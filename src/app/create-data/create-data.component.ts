@@ -11,7 +11,7 @@ export class CreateDataComponent implements OnInit {
   client: ClientModel = {
     customer: '',
     birthday: '',
-    contactPeron: '',
+    contactPerson: '',
     accManager: '',
     product: '',
     item: '',
@@ -31,7 +31,6 @@ export class CreateDataComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.client);
       this.clientService.createClient(this.client);
   }
 }

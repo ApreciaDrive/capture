@@ -4,7 +4,7 @@ export interface ClientModel {
   clientId?: string;
   customer: string;
   birthday: string;
-  contactPeron: string;
+  contactPerson: string;
   accManager: string;
   product: string;
   item: string;

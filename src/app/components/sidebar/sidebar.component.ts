@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -9,8 +8,8 @@ declare interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Dashboard', class: '' },
   { path: '/create', title: 'Create', class: '' },
+  { path: '/clients', title: 'Clients', class: '' },
 ];
 
 @Component({

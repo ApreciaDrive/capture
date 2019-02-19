@@ -1,0 +1,35 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Client Table</h4>
+            <p class="card-category"> clients saved on database</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <tr>
+                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let client of clients">
+                    <td>{{client.customer}}</td>
+                    <td>{{client.birthday}}</td>
+                    <td>{{client.contactPerson}}</td>
+                    <td>{{client.accManager}}</td>
+                    <td>{{client.product}}</td>
+                    <td>{{client.item}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
