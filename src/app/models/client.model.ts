@@ -7,6 +7,8 @@ export interface ClientModel {
   contactPerson: string;
   accManager: string;
   product: string;
+  productCategory: string;
+  licenceKey: string;
   item: string;
   streetAddress: string;
   surburb: string;

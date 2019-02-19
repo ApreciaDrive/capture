@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ComponentsModule } from './components/components.module';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(config),
+    ToastrModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,

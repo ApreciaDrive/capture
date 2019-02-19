@@ -11,13 +11,20 @@
             <form #formData='ngForm'>
               <div class="row">
                 <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Customer" [(ngModel)]="client.customer" name="customer" >
+                  <mat-form-field>
+                    <select matNativeControl required [(ngModel)]="client.customer" name="customer">
+                      <option value="" disabled>Customer</option>
+                      <option value="Absa">Absa</option>
+                      <option value="Inteleqt">Inteleqt</option>
+                      <option value="Vodacom">Vodacom</option>
+                    </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Birthday" [(ngModel)]="client.birthday" name="birthday">
+                  <mat-form-field>
+                    <input matInput placeholder="birthday" [matDatepicker]="birthday" [(ngModel)]="client.birthday" name="birthday">
+                    <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+                    <mat-datepicker #birthday></mat-datepicker>
                   </mat-form-field>
                 </div>
               </div>
@@ -40,18 +47,30 @@
               </div>
               <div class="row">
                 <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Product Category" type="text" [(ngModel)]="client.productCategory" name="productCat">
+                  <mat-form-field>
+                  <select matNativeControl required [(ngModel)]="client.productCategory" name="productCategory">
+                    <option value="" disabled>Product Category</option>
+                    <option value="Exisiting Qlik Sense">Exisiting Qlik Sense</option>
+                    <option value="Production Sites">Production Sites</option>
+                    <option value="Qlik Sense">Qlik Sense</option>
+                  </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Product" type="text" [(ngModel)]="client.product" name="product">
+                  <mat-form-field>
+                    <select matNativeControl required [(ngModel)]="client.product" name="product">
+                      <option value="" disabled>Product</option>
+                      <option value="QlikView">QlikView</option>
+                    </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Item" type="text" [(ngModel)]="client.item" name="item">
+                  <mat-form-field>
+                    <select matNativeControl required [(ngModel)]="client.item" name="item">
+                      <option value="" disabled>Item</option>
+                      <option value="Qlik Sense Enterprise">Qlik Sense Enterprise</option>
+                      <option value="Qlik Sense Production">Qlik Sense Production</option>
+                    </select>
                   </mat-form-field>
                 </div>
               </div>
