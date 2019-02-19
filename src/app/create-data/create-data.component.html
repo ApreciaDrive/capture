@@ -8,93 +8,93 @@
             <p class="card-category">Complete Record</p>
           </div>
           <div class="card-body">
-            <form>
+            <form #formData='ngForm'>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Customer" >
+                    <input matInput placeholder="Customer" [(ngModel)]="client.customer" name="customer" >
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Birthday">
+                    <input matInput placeholder="Birthday" [(ngModel)]="client.birthday" name="birthday">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Contact Person" type="text">
+                    <input matInput placeholder="Contact Person" type="text" [(ngModel)]="client.contactPerson" name="person">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Account Manager" type="text">
+                    <input matInput placeholder="Account Manager" type="text" [(ngModel)]="client.accManager" name="accMan">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="License Key" type="text">
+                    <input matInput placeholder="License Key" type="text" [(ngModel)]="client.licenceKey" name="licence">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Product Category" type="text">
+                    <input matInput placeholder="Product Category" type="text" [(ngModel)]="client.productCategory" name="productCat">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Product" type="text">
+                    <input matInput placeholder="Product" type="text" [(ngModel)]="client.product" name="product">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Item" type="text">
+                    <input matInput placeholder="Item" type="text" [(ngModel)]="client.item" name="item">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Street Adress" type="text">
+                    <input matInput placeholder="Street Adress" type="text"[(ngModel)]="client.streetAddress" name="sttr">
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Surburb" type="text">
+                    <input matInput placeholder="Surburb" type="text" [(ngModel)]="client.surburb" name="surburb">
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Town" type="text">
+                    <input matInput placeholder="Town" type="text" [(ngModel)]="client.town" name="town">
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="City" type="text">
+                    <input matInput placeholder="City" type="text" [(ngModel)]="client.city" name="city">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Province" type="text">
+                    <input matInput placeholder="Province" type="text" [(ngModel)]="client.province" name="province">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Country" type="text">
+                    <input matInput placeholder="Country" type="text" [(ngModel)]="client.country" name="country">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Postal Code" type="text">
+                    <input matInput placeholder="Postal Code" type="text" [(ngModel)]="client.postalCode" name="postalCode">
                   </mat-form-field>
                 </div>
               </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right">Create Record</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="onSubmit()">Create Record</button>
               <div class="clearfix"></div>
             </form>
           </div>
