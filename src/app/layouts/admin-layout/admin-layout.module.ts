@@ -6,13 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ClientsComponent } from '../../clients/clients.component';
-// import { UserProfileComponent } from '../../user-profile/user-profile.component';
-// import { TableListComponent } from '../../table-list/table-list.component';
-// import { TypographyComponent } from '../../typography/typography.component';
-// import { IconsComponent } from '../../icons/icons.component';
-// import { MapsComponent } from '../../maps/maps.component';
-// import { NotificationsComponent } from '../../notifications/notifications.component';
-// import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { MaintainanceCustomersComponent } from '../../maintainance-customers/maintainance-customers.component';
+import { CreateMaintainanceCustomerComponent } from '../../create-maintainance-customer/create-maintainance-customer.component';
 
 import {
     MatButtonModule,
@@ -42,12 +37,8 @@ import {
          DashboardComponent,
          CreateDataComponent,
          ClientsComponent,
-        // TableListComponent,
-        // TypographyComponent,
-        // IconsComponent,
-        // MapsComponent,
-        // NotificationsComponent,
-        // UpgradeComponent,
+        CreateMaintainanceCustomerComponent,
+        MaintainanceCustomersComponent,
     ]
 })
 

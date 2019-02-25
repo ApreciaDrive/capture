@@ -1,9 +1,9 @@
-import { ClientModel } from './../models/client.model';
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../service/client.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { AnnuityModel } from '../models/annuity.model';
+import { AnnuityService } from '../service/annuity.service';
 
 @Component({
   selector: 'app-create-data',
@@ -11,25 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-data.component.css']
 })
 export class CreateDataComponent implements OnInit {
-  client: ClientModel = {
-    customer: '',
-    birthday: '',
-    contactPerson: '',
-    accManager: '',
-    product: '',
-    item: '',
-    streetAddress: '',
-    productCategory: '',
-    licenceKey: '',
-    surburb: '',
-    town: '',
-    city: '',
-    province: '',
-    country: '',
-    postalCode: '',
+  customer: AnnuityModel = {
+    EntityId: '',
+    EntityFullName: '',
+    StartDate: '',
+    AnniversaryDate: '',
+    RenewalDate: '',
+    AnnuityAmount: 0,
   };
   constructor(
-    private clientService: ClientService,
+    private annuityService: AnnuityService,
     public toastr: ToastrManager,
     private route: Router,
   ) { }
@@ -38,9 +29,15 @@ export class CreateDataComponent implements OnInit {
   }
 
   onSubmit() {
-    this.client.birthday = moment(this.client.birthday).format('LL');
-      this.clientService.createClient(this.client).then((_) => {
+    this.customer.StartDate = moment(this.customer.StartDate).format('LL');
+    this.customer.AnniversaryDate = moment(this.customer.StartDate).add(1, 'year').format('LL');
+    this.customer.RenewalDate = moment(this.customer.AnniversaryDate).subtract(1, 'month').format('LL');
+    this.annuityService.createAnnuityCustomer(this.customer).then((_) => {
         this.toastr.successToastr('Created successfully', 'Success!');
       });
+  }
+
+  clearFields() {
+
   }
 }

@@ -16,7 +16,6 @@ import { ComponentsModule } from './components/components.module';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ng6-toastr-notifications';
 
-
 @NgModule({
   declarations: [
     AppComponent,

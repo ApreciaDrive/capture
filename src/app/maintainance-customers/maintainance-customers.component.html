@@ -4,8 +4,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h4 class="card-title ">Annuity Table</h4>
-            <a (click)="createAnnuityCustomer()" class="float">
+            <h4 class="card-title ">Maintainance Table</h4>
+            <a (click)="createMaintainanceCustomer()" class="float">
               <i class="fa fa-plus my-float"></i>
             </a>
           </div>
@@ -21,10 +21,11 @@
                   <tr *ngFor="let client of customers">
                     <td>{{client.EntityFullName}}</td>
                     <td>{{client.EntityId}}</td>
-                    <td>R {{client.AnnuityAmount}}</td>
-                    <td>{{client.StartDate}}</td>
-                    <td>{{client.AnniversaryDate}}</td>
-                    <td>{{client.RenewalDate}}</td>
+                    <td>R {{client.Product}}</td>
+                    <td>{{client.ProductCategory}}</td>
+                    <td>{{client.Item}}</td>
+                    <td>{{client.Value}}</td>
+                    <td>{{client.YearlyMaintaince}}</td>
                   </tr>
                 </tbody>
               </table>

@@ -6,7 +6,7 @@ import {Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [{
     path: '',
-    redirectTo: 'create',
+    redirectTo: 'clients',
     pathMatch: 'full',
 }, {
     path: '',

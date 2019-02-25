@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../service/client.service';
-import { ClientModel } from '../models/client.model';
+import { AnnuityModel } from '../models/annuity.model';
+import { AnnuityService } from '../service/annuity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -8,22 +9,26 @@ import { ClientModel } from '../models/client.model';
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent implements OnInit {
-  headElements = ['Customer',
-    'Birthday',
-    'Contact Person',
-    'Acc Manager',
-    'Product',
-    'Item'];
-  clients: ClientModel[] = [];
-  constructor(private clientService: ClientService) { }
+  headElements = ['Entity Full Name',
+    'Entity ID',
+    'Annuity Amount',
+    'Start Date',
+    'Anniversary Date',
+    'Renewal Date'];
+  customers: AnnuityModel[] = [];
+  constructor(private customerService: AnnuityService, private route: Router) { }
 
   ngOnInit() {
     this.getClients();
   }
   getClients() {
-    return this.clientService.getClients().subscribe(users => {
-      this.clients = users;
-      return this.clients;
+    return this.customerService.getAnnuityCustomers().subscribe(users => {
+      this.customers = users;
+      return this.customers;
     });
+  }
+
+  createAnnuityCustomer() {
+    this.route.navigate(['/create']).then(() => { }, () => { });
   }
 }
