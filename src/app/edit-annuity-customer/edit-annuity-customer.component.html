@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8" style="margin: auto;">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Annuity Customer</h4>
+            <p class="card-category">Update Record</p>
+          </div>
+          <div class="card-body">
+            <form #formData='ngForm'>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.EntityId" name="EntityId">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.EntityFullName" name="EntityFullName">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput placeholder={{customer.StartDate}} [matDatepicker]="startDate" [(ngModel)]="customer.StartDate"
+                      name="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Annuity Amount" type="text" [(ngModel)]="customer.AnnuityAmount" name="AnnuityAmount">
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-primary-variant pull-right" (click)="onSubmit()">Update</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="deleteCustomer()">Delete</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

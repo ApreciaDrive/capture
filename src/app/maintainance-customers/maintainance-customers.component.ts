@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnuityModel } from '../models/annuity.model';
 import { AnnuityService } from '../service/annuity.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { MaintainanceService } from '../service/maintainance.service';
 import { MaintainanceModel } from '../models/maintainance.model';
 
@@ -40,5 +40,14 @@ export class MaintainanceCustomersComponent implements OnInit {
 
   createMaintainanceCustomer() {
     this.route.navigate(['/create-maintainance']).then(() => { }, () => { });
+  }
+
+  UpdateStore(data) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        'id': data
+      }
+    };
+    this.route.navigate(['/edit-maintainance'], navigationExtras);
   }
 }

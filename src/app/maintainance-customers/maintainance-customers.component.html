@@ -18,7 +18,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let client of customers">
+                  <tr class="tableRow" (click)="UpdateStore(client.id)" *ngFor="let client of customers">
                     <td>{{client.EntityFullName}}</td>
                     <td>{{client.EntityId}}</td>
                     <td>{{client.Product}}</td>
