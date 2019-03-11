@@ -1,3 +1,4 @@
+import { EditMaintainanceCustomerComponent } from './../../edit-maintainance-customer/edit-maintainance-customer.component';
 import { CreateDataComponent } from './../../create-data/create-data.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -19,6 +20,7 @@ import {
     MatDatepickerModule,
     MatNativeDateModule
 } from '@angular/material';
+import { EditAnnuityCustomerComponent } from '../../edit-annuity-customer/edit-annuity-customer.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -39,6 +41,8 @@ import {
          ClientsComponent,
         CreateMaintainanceCustomerComponent,
         MaintainanceCustomersComponent,
+        EditAnnuityCustomerComponent,
+        EditMaintainanceCustomerComponent
     ]
 })
 

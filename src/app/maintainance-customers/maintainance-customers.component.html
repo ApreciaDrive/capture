@@ -18,14 +18,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let client of customers">
+                  <tr class="tableRow" (click)="UpdateStore(client.id)" *ngFor="let client of customers">
                     <td>{{client.EntityFullName}}</td>
                     <td>{{client.EntityId}}</td>
                     <td>R {{client.Product}}</td>
                     <td>{{client.ProductCategory}}</td>
                     <td>{{client.Item}}</td>
                     <td>{{client.Value}}</td>
-                    <td>{{client.YearlyMaintaince}}</td>
+                    <td>{{client.YearlyMaintainance}}</td>
                   </tr>
                 </tbody>
               </table>

@@ -34,6 +34,7 @@ export class CreateDataComponent implements OnInit {
     this.customer.RenewalDate = moment(this.customer.AnniversaryDate).subtract(1, 'month').format('LL');
     this.annuityService.createAnnuityCustomer(this.customer).then((_) => {
         this.toastr.successToastr('Created successfully', 'Success!');
+        this.route.navigate(['/clients']);
       });
   }
 

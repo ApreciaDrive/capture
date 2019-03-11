@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnuityModel } from '../models/annuity.model';
 import { AnnuityService } from '../service/annuity.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -16,6 +16,7 @@ export class ClientsComponent implements OnInit {
     'Anniversary Date',
     'Renewal Date'];
   customers: AnnuityModel[] = [];
+  public selectedName: any;
   constructor(private customerService: AnnuityService, private route: Router) { }
 
   ngOnInit() {
@@ -30,5 +31,14 @@ export class ClientsComponent implements OnInit {
 
   createAnnuityCustomer() {
     this.route.navigate(['/create']).then(() => { }, () => { });
+  }
+
+  UpdateStore(data) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        'id': data
+      }
+    };
+      this.route.navigate(['/edit-annuity'], navigationExtras);
   }
 }
