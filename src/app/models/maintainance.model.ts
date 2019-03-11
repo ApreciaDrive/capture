@@ -11,5 +11,7 @@ export interface MaintainanceModel {
     UnitPrice: number;
     Value: number;
     YearlyMaintainance: string;
+    RenewalDate: string;
+    StartDate: string;
     EntityRef?: DocumentReference;
 }

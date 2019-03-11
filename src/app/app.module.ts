@@ -30,7 +30,6 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     AngularFirestoreModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpModule,
     ComponentsModule,
     RouterModule,
     FormsModule,

@@ -77,17 +77,26 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Value" type="text" (ngModel)="customer.Value" name="Value">
-                  </mat-form-field>
-                </div>
+                    <mat-form-field>
+                      <input matInput placeholder="Start Date" [matDatepicker]="startDate" [(ngModel)]="customer.StartDate" name="startDate">
+                      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                      <mat-datepicker #startDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                  <!-- <div class="col-md-4">
+                      <mat-form-field>
+                        <input matInput placeholder="Start Date" [matDatepicker]="startDate" [(ngModel)]="customer.StartDate" name="startDate">
+                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+                      </mat-form-field>
+                    </div> -->
+                <!-- <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput placeholder="Yearly Maintainance" type="text" [(ngModel)]="customer.YearlyMaintainance" name="YearlyMaintainance">
                   </mat-form-field>
-                </div>
+                </div> -->
               </div>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="onSubmit()">Create
                 Record</button>

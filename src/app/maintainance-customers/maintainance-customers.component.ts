@@ -11,15 +11,18 @@ import { MaintainanceModel } from '../models/maintainance.model';
   styleUrls: ['./maintainance-customers.component.css']
 })
 export class MaintainanceCustomersComponent implements OnInit {
-  headElements = ['Entity Full Name',
+  headElements = [
+    'Entity Full Name',
     'Entity ID',
     'Product',
     'Product Category',
     'Item',
     'Qty',
     'Unit Price',
-    'Value',
-    'Yearly Maintainance'];
+    'Total Amount',
+    'Start Date',
+    'Renewal Date'
+  ];
   customers: MaintainanceModel[] = [];
 
   constructor(private customerService: MaintainanceService, private route: Router) { }

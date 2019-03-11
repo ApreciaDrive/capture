@@ -14,6 +14,8 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
   customer: MaintainanceModel = {
     EntityId: '',
     EntityFullName: '',
+    RenewalDate: '',
+    StartDate: '',
     Product: '',
     ProductCategory: '',
     Item: '',
@@ -37,4 +39,6 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
       this.toastr.successToastr('Created successfully', 'Success!');
     });
   }
+
+  clearFields() {}
 }
