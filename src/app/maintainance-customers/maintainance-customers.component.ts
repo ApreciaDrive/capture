@@ -29,7 +29,8 @@ export class MaintainanceCustomersComponent implements OnInit {
   }
 
   getClients() {
-    return this.customerService.getMaintananceCustomers().subscribe(users => {
+    return this.customerService.getMaintananceCustomers()
+    .then(users => {
       this.customers = users;
       return this.customers;
     });

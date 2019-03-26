@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 export class CreateMaintainanceCustomerComponent implements OnInit {
 
   customer: MaintainanceModel = {
-    EntityId: '',
-    EntityFullName: '',
-    Product: '',
-    ProductCategory: '',
-    Item: '',
-    Qty: 0,
-    UnitPrice: 0,
-    Value: 0,
-    YearlyMaintainance: '',
+    entityId: '',
+    entityFullName: '',
+    product: '',
+    productCategory: '',
+    item: '',
+    quantity: 0,
+    unitPrice: 0,
+    value: 0,
+    yearlyMaintenance: 0,
   };
 
   constructor(
@@ -33,8 +33,13 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
   }
 
   onSubmit() {
-    this.customerService.createMaintainanceCustomer(this.customer).then((_) => {
+    this.customerService.createMaintainanceCustomer(this.customer)
+    .then((_) => {
+      this.route.navigate(['/create-maintainance']).then(() => { }, () => { });
       this.toastr.successToastr('Created successfully', 'Success!');
+    })
+    .catch(err => {
+      this.toastr.errorToastr(err.message, 'Error!');
     });
   }
 }

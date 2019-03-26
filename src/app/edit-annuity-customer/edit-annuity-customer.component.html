@@ -12,19 +12,19 @@
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.EntityId" name="EntityId">
+                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="EntityId">
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.EntityFullName" name="EntityFullName">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName" name="EntityFullName">
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field>
-                    <input matInput placeholder={{customer.StartDate}} [matDatepicker]="startDate" [(ngModel)]="customer.StartDate"
+                    <input matInput placeholder={{customer.StartDate}} [matDatepicker]="startDate" [(ngModel)]="customer.startDate"
                       name="startDate">
                     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
                     <mat-datepicker #startDate></mat-datepicker>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Annuity Amount" type="text" [(ngModel)]="customer.AnnuityAmount" name="AnnuityAmount">
+                    <input matInput placeholder="Annuity Amount" type="text" [(ngModel)]="customer.annuityAmount" name="annuityAmount">
                   </mat-form-field>
                 </div>
               </div>

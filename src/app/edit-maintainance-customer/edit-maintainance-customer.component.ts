@@ -23,9 +23,9 @@ customer = {} as MaintainanceModel;
     this.activeroute.queryParams.subscribe(params => {
       const id = params['id'];
       if (!isNullOrUndefined(id)) {
-        this.customerService.getCustomerByEmail(id).subscribe(users => {
+        this.customerService.getCustomerById(id)
+        .then(users => {
           this.customer = users;
-          console.log(this.customer);
         });
       }
     });
@@ -42,7 +42,7 @@ customer = {} as MaintainanceModel;
   }
 
   deleteCustomer() {
-    this.customerService.removeCustomer(this.customer)
+    this.customerService.removeCustomer(this.customer.entityId)
       .then((_) => {
         this.route.navigate(['/maintainance']);
         this.toastr.successToastr('customer successfully removed', 'Success!');
