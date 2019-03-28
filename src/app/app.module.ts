@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { config } from './firebase/firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -15,11 +14,12 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { ComponentsModule } from './components/components.module';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,10 +30,10 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     AngularFirestoreModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ComponentsModule,
     RouterModule,
     FormsModule,
-    HttpModule,
     AppRoutingModule
   ],
   providers: [],

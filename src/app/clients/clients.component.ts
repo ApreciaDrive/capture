@@ -20,11 +20,13 @@ export class ClientsComponent implements OnInit {
   constructor(private customerService: AnnuityService, private route: Router) { }
 
   ngOnInit() {
-    this.getClients();
+    this.getCustomers();
   }
-  getClients() {
-    return this.customerService.getAnnuityCustomers().subscribe(users => {
-      this.customers = users;
+
+  getCustomers() {
+    return this.customerService.getAnnuityCustomers()
+    .subscribe(data => {
+      this.customers = data;
       return this.customers;
     });
   }
@@ -33,10 +35,10 @@ export class ClientsComponent implements OnInit {
     this.route.navigate(['/create']).then(() => { }, () => { });
   }
 
-  UpdateStore(data) {
+  UpdateStore(id) {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        'id': data
+        'id': id
       }
     };
       this.route.navigate(['/edit-annuity'], navigationExtras);

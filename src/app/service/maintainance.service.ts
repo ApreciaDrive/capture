@@ -1,9 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { MaintainanceModel } from './../models/maintainance.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { AnnuityModel } from '../models/annuity.model';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -11,55 +8,28 @@ import { Observable } from 'rxjs';
 
 export class MaintainanceService {
 
-    private path = 'maintainace_customers';
-    maintainanceCollection: AngularFirestoreCollection<MaintainanceModel>;
-    maintainance: Observable<MaintainanceModel[]>;
-    maintainanceDocument: AngularFirestoreDocument;
+    private path = 'http://localhost:5000/api/Maintenances';
 
-    constructor(private afs: AngularFirestore) {
-        this.maintainanceCollection = this.afs.collection(this.path, ref => ref.orderBy('EntityFullName'));
+    constructor(private http: HttpClient) {
     }
 
-    private getRefToCollection() {
-        return this.maintainanceCollection.snapshotChanges().pipe(
-            map(changes => {
-                return changes.map(a => {
-                    const data = a.payload.doc.data() as MaintainanceModel;
-                    data.id = a.payload.doc.id;
-                    data.EntityRef = a.payload.doc.ref;
-                    return data;
-                });
-            })
-        );
+    getMaintananceCustomers(): Promise<MaintainanceModel[]> {
+        return this.http.get<MaintainanceModel[]>(this.path).toPromise();
     }
 
-    getMaintananceCustomers(): Observable<MaintainanceModel[]> {
-        this.maintainance = this.getRefToCollection();
-        return this.maintainance;
-    }
-
-    getCustomerByEmail(query: string): Observable<MaintainanceModel> {
-        return this.afs.doc<MaintainanceModel>(`${this.path}/` + query).snapshotChanges()
-            .pipe(
-                map(changes => {
-                    const data = changes.payload.data() as MaintainanceModel;
-                    data.id = changes.payload.id;
-                    return data;
-                })
-            );
+    getCustomerById(id: string): Promise<MaintainanceModel> {
+        return this.http.get<MaintainanceModel>(`${this.path}/${id}`).toPromise();
     }
 
     updateAnnuityCustomer(data: MaintainanceModel) {
-        this.maintainanceDocument = this.afs.doc(`${this.path}/${data.id}`);
-        return this.maintainanceDocument.update(data);
+        return this.http.put<MaintainanceModel>(`${this.path}/${data.entityId}`, data).toPromise();
     }
 
-    removeCustomer(data: MaintainanceModel) {
-        this.maintainanceDocument = this.afs.doc(`${this.path}/${data.id}`);
-        return this.maintainanceDocument.delete();
+    removeCustomer(id: string) {
+        return this.http.delete<MaintainanceModel>(`${this.path}/${id}`).toPromise();
     }
 
     createMaintainanceCustomer(customer: MaintainanceModel) {
-        return this.maintainanceCollection.add(customer);
+        return this.http.post<MaintainanceModel>(`${this.path}`, customer).toPromise();
     }
 }

@@ -25,28 +25,30 @@ export class EditAnnuityCustomerComponent implements OnInit {
     this.activeroute.queryParams.subscribe(params => {
       const id = params['id'];
       if (!isNullOrUndefined(id)) {
-        this.customerService.getCustomerByEmail(id).subscribe(users => {
-          this.customer = users;
+        this.customerService.getCustomerById(id)
+        .then(user => {
+          this.customer = user;
         });
       }
     });
   }
 
   onSubmit() {
-    this.customer.StartDate = moment(this.customer.StartDate).format('LL');
-    this.customer.AnniversaryDate = moment(this.customer.StartDate).add(1, 'year').format('LL');
-    this.customer.RenewalDate = moment(this.customer.AnniversaryDate).subtract(1, 'month').format('LL');
+    this.customer.startDate = moment(this.customer.startDate).toDate();
+    this.customer.anniversaryDate = moment(this.customer.startDate).add(1, 'year').toDate();
+    this.customer.renewalDate = moment(this.customer.anniversaryDate).subtract(1, 'month').toDate();
     this.customerService.updateAnnuityCustomer(this.customer)
-      .then((_) => {
+    .then((_) => {
         this.route.navigate(['/clients']);
         this.toastr.successToastr('customer updated successfully', 'Success!');
-      }).catch(error => {
-        this.toastr.errorToastr(error, 'Error!');
-      });
+    })
+    .catch(error => {
+      this.toastr.errorToastr(error, 'Error!');
+    });
   }
 
   deleteCustomer() {
-    this.customerService.removeCustomer(this.customer)
+    this.customerService.removeCustomer(this.customer.entityId)
     .then((_) => {
       this.route.navigate(['/clients']);
       this.toastr.successToastr('customer successfully removed', 'Success!');

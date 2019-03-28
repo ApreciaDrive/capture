@@ -18,16 +18,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="tableRow" (click)="UpdateStore(client.id)" *ngFor="let client of customers">
-                    <td>{{client.EntityFullName}}</td>
-                    <td>{{client.EntityId}}</td>
-                    <td>{{client.Product}}</td>
-                    <td>{{client.ProductCategory}}</td>
-                    <td>{{client.Item}}</td>
-                    <td>{{client.Qty}}</td>
-                    <td>R{{client.UnitPrice}}.00</td>
-                    <td>R{{client.UnitPrice * client.Qty}}.00</td>
-                    <td>{{client.StartDate}}</td>
+                  <tr class="tableRow" (click)="UpdateStore(client.entityId)" *ngFor="let client of customers">
+                    <td>{{client.entityFullName}}</td>
+                    <td>{{client.entityId}}</td>
+                    <td>{{client.product}}</td>
+                    <td>{{client.productCategory}}</td>
+                    <td>{{client.item}}</td>
+                    <td>{{client.quantity}}</td>
+                    <td>{{client.unitPrice}}</td>
+                    <td>{{client.value}}</td>
+                    <td>{{client.yearlyMaintenance}}</td>
                     <td>{{client.RenewalDate}}</td>
                   </tr>
                 </tbody>
