@@ -32,7 +32,7 @@ export class ClientsComponent implements OnInit {
   }
 
   createAnnuityCustomer() {
-    this.route.navigate(['/create']).then(() => { }, () => { });
+    this.route.navigate(['/login']).then(() => { }, () => { });
   }
 
   UpdateStore(id) {
