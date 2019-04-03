@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AnnuityService {
 
-    private path = 'http://localhost:5000/api/Annuities';
+    private path = 'https://inteleqtcapture20190403040406.azurewebsites.net/api/Annuities';
     private tokenHeader = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('token')}` });
 
     constructor(private http: HttpClient) {

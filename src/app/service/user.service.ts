@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-    private path = 'http://localhost:5000/api/ApplicationUser/Register';
+  private path = 'https://inteleqtcapture20190403040406.azurewebsites.net/api/ApplicationUser/Register';
 
   constructor(private http: HttpClient) {}
 
     async login(user: UserModel) {
         return await this.http
-            .post<any>('http://localhost:5000/api/ApplicationUser/Login', user)
+          .post<any>('https://inteleqtcapture20190403040406.azurewebsites.net/api/ApplicationUser/Login', user)
             .toPromise();
     }
     async createUser(user: UserModel) {

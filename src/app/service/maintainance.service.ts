@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 export class MaintainanceService {
 
-    private path = 'http://localhost:5000/api/Maintenances';
+    private path = 'https://inteleqtcapture20190403040406.azurewebsites.net/api/Maintenances';
     private tokenHeader = new HttpHeaders({ 'Authorization': `Bearer ${localStorage.getItem('token')}` });
 
     constructor(private http: HttpClient) {
