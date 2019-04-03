@@ -9,6 +9,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ClientsComponent } from '../../clients/clients.component';
 import { MaintainanceCustomersComponent } from '../../maintainance-customers/maintainance-customers.component';
 import { CreateMaintainanceCustomerComponent } from '../../create-maintainance-customer/create-maintainance-customer.component';
+import { EditAnnuityCustomerComponent } from '../../edit-annuity-customer/edit-annuity-customer.component';
 
 import {
     MatButtonModule,
@@ -20,30 +21,29 @@ import {
     MatDatepickerModule,
     MatNativeDateModule
 } from '@angular/material';
-import { EditAnnuityCustomerComponent } from '../../edit-annuity-customer/edit-annuity-customer.component';
-@NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(AdminLayoutRoutes),
-        FormsModule,
-        MatButtonModule,
-        MatRippleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatTooltipModule,
-        MatDatepickerModule,
-        MatNativeDateModule
-    ],
-    declarations: [
-         DashboardComponent,
-         CreateDataComponent,
-         ClientsComponent,
-        CreateMaintainanceCustomerComponent,
-        MaintainanceCustomersComponent,
-        EditAnnuityCustomerComponent,
-        EditMaintainanceCustomerComponent
-    ]
-})
 
-export class AdminLayoutModule { }
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forChild(AdminLayoutRoutes),
+    FormsModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  declarations: [
+    DashboardComponent,
+    CreateDataComponent,
+    ClientsComponent,
+    CreateMaintainanceCustomerComponent,
+    MaintainanceCustomersComponent,
+    EditAnnuityCustomerComponent,
+    EditMaintainanceCustomerComponent
+  ]
+})
+export class AdminLayoutModule {}

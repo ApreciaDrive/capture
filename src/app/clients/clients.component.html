@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-pills table-header">
             <h4 class="card-title ">Annuity Table</h4>
             <a (click)="createAnnuityCustomer()" class="float">
               <i class="fa fa-plus my-float"></i>
@@ -18,7 +18,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let client of customers" (click)="UpdateStore(client.entityId)" class="tableRow">
+                  <tr *ngFor="let client of customers" (click)="UpdateStore(client.entityId)" class="table-row">
                     <td>{{client.entityFullName}}</td>
                     <td>{{client.entityId}}</td>
                     <td>{{client.annuityAmount | currency:' R'}}</td>

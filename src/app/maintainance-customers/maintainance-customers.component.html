@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-pills table-header">
             <h4 class="card-title ">Maintainance Table</h4>
             <a (click)="createMaintainanceCustomer()" class="float">
               <i class="fa fa-plus my-float"></i>
@@ -18,7 +18,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="tableRow" (click)="UpdateStore(client.entityId)" *ngFor="let client of customers">
+                  <tr class="table-row" (click)="UpdateStore(client.entityId)" *ngFor="let client of customers">
                     <td>{{client.entityFullName}}</td>
                     <td>{{client.entityId}}</td>
                     <td>{{client.product}}</td>

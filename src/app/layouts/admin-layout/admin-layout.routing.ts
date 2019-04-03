@@ -7,10 +7,10 @@ import { EditAnnuityCustomerComponent } from '../../edit-annuity-customer/edit-a
 import { EditMaintainanceCustomerComponent } from '../../edit-maintainance-customer/edit-maintainance-customer.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'clients', component: ClientsComponent },
+    { path: 'clients', component: ClientsComponent},
     { path: 'create', component: CreateDataComponent },
     { path: 'maintainance', component: MaintainanceCustomersComponent },
     { path: 'create-maintainance', component: CreateMaintainanceCustomerComponent },
     { path: 'edit-annuity', component: EditAnnuityCustomerComponent },
-    { path: 'edit-maintainance', component: EditMaintainanceCustomerComponent },
+    { path: 'edit-maintainance', component: EditMaintainanceCustomerComponent }
 ];

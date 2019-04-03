@@ -26,6 +26,9 @@ customer = {} as MaintainanceModel;
         this.customerService.getCustomerById(id)
         .then(users => {
           this.customer = users;
+        }).catch(error => {
+          this.route.navigate(['/clients']);
+          this.toastr.errorToastr(error.statusText, 'Error!');
         });
       }
     });
@@ -37,7 +40,7 @@ customer = {} as MaintainanceModel;
         this.route.navigate(['/maintainance']);
         this.toastr.successToastr('customer updated successfully', 'Success!');
       }).catch(error => {
-        this.toastr.errorToastr(error, 'Error!');
+        this.toastr.errorToastr(error.statusText, 'Error!');
       });
   }
 
@@ -46,8 +49,8 @@ customer = {} as MaintainanceModel;
       .then((_) => {
         this.route.navigate(['/maintainance']);
         this.toastr.successToastr('customer successfully removed', 'Success!');
-      }).catch(err => {
-        this.toastr.errorToastr(err, 'Error!');
+      }).catch(error => {
+        this.toastr.errorToastr(error.statusText, 'Error!');
       });
   }
 
