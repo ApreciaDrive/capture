@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-8" style="margin: auto;">
         <div class="card">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-pills table-header">
             <h4 class="card-title">Annuity Customer</h4>
             <p class="card-category">Complete Record</p>
           </div>
@@ -35,36 +35,8 @@
                   </mat-form-field>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field>
-                  <select matNativeControl required [(ngModel)]="client.productCategory" name="productCategory">
-                    <option value="" disabled>Product Category</option>
-                    <option value="Exisiting Qlik Sense">Exisiting Qlik Sense</option>
-                    <option value="Production Sites">Production Sites</option>
-                    <option value="Qlik Sense">Qlik Sense</option>
-                  </select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="client.product" name="product">
-                      <option value="" disabled>Product</option>
-                      <option value="QlikView">QlikView</option>
-                    </select>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="client.item" name="item">
-                      <option value="" disabled>Item</option>
-                      <option value="Qlik Sense Enterprise">Qlik Sense Enterprise</option>
-                      <option value="Qlik Sense Production">Qlik Sense Production</option>
-                    </select>
-                  </mat-form-field>
-                </div>
-              </div> -->
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="onSubmit()">Create Record</button>
+              <button mat-raised-button type="submit" class="btn pull-right primary-button" (click)="onSubmit()">Create
+                Record</button>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="clearFields()">Clear Record</button>
               <div class="clearfix"></div>
             </form>

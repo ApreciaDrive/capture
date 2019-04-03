@@ -8,7 +8,7 @@ import { MaintainanceModel } from '../models/maintainance.model';
 @Component({
   selector: 'app-maintainance-customers',
   templateUrl: './maintainance-customers.component.html',
-  styleUrls: ['./maintainance-customers.component.css']
+  styleUrls: ['./maintainance-customers.component.scss']
 })
 export class MaintainanceCustomersComponent implements OnInit {
   headElements = ['Entity Full Name',
