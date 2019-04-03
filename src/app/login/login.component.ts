@@ -38,7 +38,11 @@ export class LoginComponent implements OnInit {
           }
         })
         .catch(err => {
-          this.toastr.errorToastr(err.message, 'Error!');
+          if (err.status !== 0) {
+            this.toastr.errorToastr(err.error.value.message, `${err.statusText}`);
+          } else {
+            this.toastr.errorToastr('Please check your internet connection.', `${err.statusText}`);
+          }
         });
     } else {
       this.toastr.errorToastr('Password must match Confirm Password', 'Error!');

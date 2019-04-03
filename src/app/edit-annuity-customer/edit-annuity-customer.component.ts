@@ -28,6 +28,9 @@ export class EditAnnuityCustomerComponent implements OnInit {
         this.customerService.getCustomerById(id)
         .then(user => {
           this.customer = user;
+        }).catch(error => {
+          this.route.navigate(['/clients']);
+          this.toastr.errorToastr(error.statusText, 'Error!');
         });
       }
     });
@@ -52,8 +55,9 @@ export class EditAnnuityCustomerComponent implements OnInit {
     .then((_) => {
       this.route.navigate(['/clients']);
       this.toastr.successToastr('customer successfully removed', 'Success!');
-    }).catch(err => {
-      this.toastr.errorToastr(err, 'Error!');
+    })
+    .catch(error => {
+      this.toastr.errorToastr(error.statusText, 'Error!');
     });
   }
 }
