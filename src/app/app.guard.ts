@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 export class AuthGuard implements CanActivate {
     constructor(private route: Router) {
     }
-
+    //TODO: Better check
     canActivate(): boolean {
         if (localStorage.getItem('token')) {
             return true;

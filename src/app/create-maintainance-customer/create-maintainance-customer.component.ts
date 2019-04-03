@@ -21,6 +21,8 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
     unitPrice: 0,
     value: 0,
     yearlyMaintenance: 0,
+    RenewalDate: '',
+    StartDate: '',
   };
 
   constructor(
