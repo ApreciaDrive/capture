@@ -1,8 +1,14 @@
+import { CategoryModel } from './../models/categories.model';
 import { Component, OnInit } from '@angular/core';
 import { MaintainanceModel } from '../models/maintainance.model';
 import { MaintainanceService } from '../service/maintainance.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { Router } from '@angular/router';
+import { ProductsService } from '../service/product.service';
+import { ProductModel } from '../models/product.model';
+import { CategoryService } from '../service/category.service';
+import { ItemModel } from '../models/item.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-maintainance-customer',
@@ -17,32 +23,75 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
     product: '',
     productCategory: '',
     item: '',
-    quantity: 0,
-    unitPrice: 0,
-    value: 0,
-    yearlyMaintenance: 0,
-    RenewalDate: '',
-    StartDate: '',
+    quantity: null,
+    unitPrice: null,
+    value: null,
+    renewalDate: new Date,
+    startDate: null,
+    anniversaryDate: new Date,
   };
+  products: ProductModel [] = [];
+  categories: CategoryModel [] = [];
+  items: ItemModel [] = [];
 
   constructor(
     private customerService: MaintainanceService,
+    private productService: ProductsService,
+    private categoryService: CategoryService,
     public toastr: ToastrManager,
     private route: Router,
   ) { }
 
   ngOnInit() {
+    this.productService.getProducts().then(data => {
+      this.products = data;
+    });
   }
 
-  onSubmit() {
-    this.customerService.createMaintainanceCustomer(this.customer)
+  productSelected(product: ProductModel) {
+    this.productService.getProductById(product.id)
+      .then(res => {
+        this.categories = res.categories;
+      }).catch(err => {
+        this.toastr.errorToastr(err.message, 'Error!');
+      });
+  }
+
+  categorySelected(category: CategoryModel) {
+    this.categoryService.getCategoryById(category.id)
+      .then(res => {
+        this.items = res.items;
+      }).catch(err => {
+        this.toastr.errorToastr(err.message, 'Error!');
+      });
+  }
+
+  onSubmit(formData) {
+    this.customerService.createMaintainanceCustomer(this.assignCustomer(formData))
     .then((_) => {
-      this.route.navigate(['/create-maintainance']).then(() => { }, () => { });
+      this.route.navigate(['/create-maintainance']);
       this.toastr.successToastr('Created successfully', 'Success!');
     })
     .catch(err => {
       this.toastr.errorToastr(err.message, 'Error!');
     });
+  }
+
+  assignCustomer(formData) {
+    this.customer.entityId = formData.value.entityId;
+    this.customer.entityFullName = formData.value.entityFullName;
+    this.customer.product = formData.value.product.name;
+    this.customer.productCategory = formData.value.category.name;
+    this.customer.item = formData.value.item.name;
+    this.customer.quantity = formData.value.quantity;
+    this.customer.unitPrice = formData.value.unitPrice;
+    this.customer.value = formData.value.value;
+
+    this.customer.startDate = moment(this.customer.startDate).toDate();
+    this.customer.anniversaryDate = moment(this.customer.startDate).add(1, 'year').toDate();
+    this.customer.renewalDate = moment(this.customer.anniversaryDate).subtract(1, 'month').toDate();
+
+    return this.customer;
   }
 
   clearFields() {}

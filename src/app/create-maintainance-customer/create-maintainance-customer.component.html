@@ -12,12 +12,12 @@
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="EntityId">
+                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="entityId">
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName" name="EntityFullName">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName" name="entityFullName">
                   </mat-form-field>
                 </div>
               </div>
@@ -26,66 +26,54 @@
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="customer.product" name="product">
-                      <option value="" disabled>Product</option>
-                      <option value="QlikView">QlikView</option>
+                    <select matNativeControl required ngModel (ngModelChange)="productSelected($event)" name="product">
+                      <option value="" disabled>Products</option>
+                      <option *ngFor="let product of products" class="ng-tns-c28-8" [ngValue]="product">{{product.name}}</option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                  <select matNativeControl required [(ngModel)]="customer.productCategory" name="productCategory">
+                  <select  matNativeControl required ngModel (ngModelChange)="categorySelected($event)" name="category">
                     <option value="" disabled>Product Category</option>
-                    <option value="Exisiting Qlik Sense">Exisiting Qlik Sense</option>
-                    <option value="Production Sites">Production Sites</option>
-                    <option value="Qlik Sense">Qlik Sense</option>
+                    <option *ngFor="let category of categories" class="ng-tns-c28-8" [ngValue]="category">{{category.name}}</option>
                   </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="customer.item" name="item">
+                    <select matNativeControl required ngModel name="item">
                       <option value="" disabled>Item</option>
-                      <option value="Qlik Sense Enterprise">Qlik Sense Enterprise</option>
-                      <option value="Qlik Sense Production">Qlik Sense Production</option>
+                      <option *ngFor="let item of items" class="ng-tns-c28-8" [ngValue]="item">{{item.name}}</option>
                     </select>
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Quantity" type="text" (ngModel)="customer.quantity" name="Quantity">
+                  <div class="col-md-3">
+                  <mat-form-field>
+                    <input matInput placeholder="Start Date" [matDatepicker]="startDate" [(ngModel)]="customer.startDate" name="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                    <mat-datepicker #startDate></mat-datepicker>
                   </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Unit Price" type="text" (ngModel)="customer.unitPrice" name="UnitPrice">
+                    <input matInput placeholder="Quantity" type="text" [(ngModel)]="customer.quantity" name="quantity">
                   </mat-form-field>
                 </div>
-                <div class="col-md-4">
-                    <mat-form-field>
-                    <input matInput placeholder="Value" type="text" (ngModel)="customer.value" name="Value">
-                      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                      <mat-datepicker #startDate></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-              </div>
-              <div class="row">
-                  <!-- <div class="col-md-4">
-                      <mat-form-field>
-                        <input matInput placeholder="Start Date" [matDatepicker]="startDate" [(ngModel)]="customer.StartDate" name="startDate">
-                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                        <mat-datepicker #startDate></mat-datepicker>
-                      </mat-form-field>
-                    </div> -->
-                <!-- <div class="col-md-4">
+                <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Yearly Maintainance" type="text" [(ngModel)]="customer.yearlyMaintenance" name="YearlyMaintainance">
+                    <input matInput placeholder="Unit Price" type="text" [(ngModel)]="customer.unitPrice" name="unitPrice">
                   </mat-form-field>
-                </div> -->
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Value" type="text" [(ngModel)]="customer.value" name="value">
+                  </mat-form-field>
               </div>
-              <button mat-raised-button type="submit" class="btn primary-button pull-right" (click)="onSubmit()">Create
+              </div>
+              <button mat-raised-button type="submit" class="btn primary-button pull-right" (click)="onSubmit(formData)">Create
                 Record</button>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right">Clear
                 Record</button>

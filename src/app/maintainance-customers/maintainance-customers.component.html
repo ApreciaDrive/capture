@@ -27,8 +27,8 @@
                     <td>{{client.quantity}}</td>
                     <td>R {{client.unitPrice}}</td>
                     <td>R {{client.quantity * client.unitPrice}}</td>
-                    <td>{{client.yearlyMaintenance}}</td>
-                    <td>{{client.RenewalDate}}</td>
+                    <td>{{client.startDate | date}}</td>
+                    <td>{{client.renewalDate | date}}</td>
                   </tr>
                 </tbody>
               </table>

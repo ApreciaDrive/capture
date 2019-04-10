@@ -4,6 +4,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { isNullOrUndefined } from 'util';
 import { MaintainanceService } from '../service/maintainance.service';
+import { ProductsService } from '../service/product.service';
+import { ProductModel } from '../models/product.model';
+import { CategoryModel } from '../models/categories.model';
+import { CategoryService } from '../service/category.service';
+import { ItemModel } from '../models/item.model';
 
 @Component({
   selector: 'app-edit-maintainance-customer',
@@ -11,15 +16,35 @@ import { MaintainanceService } from '../service/maintainance.service';
   styleUrls: ['./edit-maintainance-customer.component.css']
 })
 export class EditMaintainanceCustomerComponent implements OnInit {
-customer = {} as MaintainanceModel;
+  customer: MaintainanceModel = {
+    entityId: '',
+    entityFullName: '',
+    product: '',
+    productCategory: '',
+    item: '',
+    quantity: null,
+    unitPrice: null,
+    value: null,
+    renewalDate: new Date,
+    startDate: null,
+    anniversaryDate: new Date,
+  };
+  products: ProductModel [] = [];
+  categories: CategoryModel [] = [];
+  items: ItemModel [] = [];
 
   constructor(
     private customerService: MaintainanceService,
+    private productService: ProductsService,
+    private categoryService: CategoryService,
     private route: Router,
     private activeroute: ActivatedRoute,
     private toastr: ToastrManager, ) { }
 
   ngOnInit() {
+    this.productService.getProducts().then(data => {
+      this.products = data;
+    });
     this.activeroute.queryParams.subscribe(params => {
       const id = params['id'];
       if (!isNullOrUndefined(id)) {
@@ -30,6 +55,41 @@ customer = {} as MaintainanceModel;
           this.route.navigate(['/clients']);
           this.toastr.errorToastr(error.statusText, 'Error!');
         });
+      }
+    });
+  }
+  productSelected(name: string) {
+    let id = null;
+    this.products.map(p => {
+      if (p.name === name) {
+        id = p.id;
+        this.customer.productCategory = '';
+        this.customer.item = '';
+        this.productService.getProductById(id)
+          .then(res => {
+            this.categories = res.categories;
+          }).catch(err => {
+            this.toastr.errorToastr(err.message, 'Error!');
+          });
+      } else {
+        return;
+      }
+    });
+  }
+
+  categorySelected(name: string) {
+    let id = null;
+    this.categories.map(c => {
+      if (c.name === name) {
+        id = c.id;
+        this.categoryService.getCategoryById(id)
+          .then(res => {
+            this.items = res.items;
+          }).catch(err => {
+            this.toastr.errorToastr(err.message, 'Error!');
+          });
+      } else {
+        return;
       }
     });
   }
