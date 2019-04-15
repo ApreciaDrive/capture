@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
     fullName: '',
     password: ''
   };
+  loginFailedMsg: string;
+  error: string;
   constructor(
     private userService: UserService,
     public toastr: ToastrManager,
@@ -24,8 +26,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loginFailedMsg = '';
   }
   async onSubmit(data) {
+    this.loginFailedMsg = '';
+    this.error = '';
     this.user.email = data.value.Email;
     if (data.value.Password !== null) {
       this.user.password = data.value.Password;
@@ -34,12 +39,14 @@ export class LoginComponent implements OnInit {
           if (res !== null) {
             localStorage.setItem('token', res.token);
             this.route.navigate(['']);
+            this.loginFailedMsg = '';
             this.toastr.successToastr('Login Successful', 'Success!');
           }
         })
         .catch(err => {
           if (err.status !== 0) {
-            this.toastr.errorToastr(err.error.value.message, `${err.statusText}`);
+            this.error = err;
+            this.loginFailedMsg = 'Incorrect username and password combination.';
           } else {
             this.toastr.errorToastr('Please check your internet connection.', `${err.statusText}`);
           }

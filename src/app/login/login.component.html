@@ -10,19 +10,23 @@
         <div>
           <img src="../../assets/img/faces/user.png" class="mx-auto d-block user-image">
         </div>
-        <form #formData='ngForm' class="form-group">
+        <form #formData='ngForm' autocomplete="off" class="form-group">
           <br />
+          <div class="incorrect-credentials alert alert-danger" role="alert" id="incorrect-text"
+            [style.visibility]="loginFailedMsg !== '' ? 'visible' : 'hidden'">
+            {{loginFailedMsg}}
+          </div>
           <div>
             <div>
               <mat-form-field class="user-input">
-                <input matInput placeholder="Email" type="email" ngModel name="Email">
+                <input matInput placeholder="Email" type="email" ngModel name="Email" required minlength="4">
               </mat-form-field>
             </div>
           </div>
           <div>
             <div>
               <mat-form-field class="user-input">
-                <input matInput placeholder="Password" type="password" ngModel name="Password">
+                <input matInput placeholder="Password" type="password" ngModel name="Password" required minlength="4">
               </mat-form-field>
             </div>
           </div>

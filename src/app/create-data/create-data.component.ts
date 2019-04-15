@@ -19,6 +19,7 @@ export class CreateDataComponent implements OnInit {
     renewalDate: new Date,
     annuityAmount: 0,
   };
+  formValid: boolean;
   constructor(
     private annuityService: AnnuityService,
     public toastr: ToastrManager,
@@ -26,6 +27,7 @@ export class CreateDataComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.formValid = false;
   }
 
   onSubmit() {
@@ -33,16 +35,39 @@ export class CreateDataComponent implements OnInit {
     this.customer.anniversaryDate = moment(this.customer.startDate).add(1, 'year').toDate();
     this.customer.renewalDate = moment(this.customer.anniversaryDate).subtract(1, 'month').toDate();
     this.annuityService.createAnnuityCustomer(this.customer).then((_) => {
-        this.toastr.successToastr('Created successfully', 'Success!');
-        this.route.navigate(['/clients']);
-      })
+      this.toastr.successToastr('Created successfully', 'Success!');
+      this.route.navigate(['/clients']);
+    })
       .catch(err => {
         this.toastr.errorToastr(err.message, 'Error!');
       });
   }
 
-  clearFields() {
+  onFormChanged() {
 
+    if (
+      this.customer.entityId === undefined ||
+      this.customer.entityFullName === undefined ||
+      this.customer.annuityAmount === undefined
+    ) {
+      return;
+    }
+
+    if (this.customer.entityId.length === 19) {
+      if (this.customer.entityFullName.length > 0) {
+        if (this.customer.annuityAmount > 0) {
+          this.formValid = true;
+        } else {
+          this.formValid = false;
+        }
+      } else {
+        this.formValid = false;
+      }
+    } else {
+      this.formValid = false;
+    }
   }
-  
+
+  clearFields() { }
+
 }

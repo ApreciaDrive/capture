@@ -12,12 +12,16 @@
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="entityId">
+                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="entityId"
+                      (input)="onFormChanged(formData)" required data-error="Please enter valid entity Id."
+                      minlength="19">
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName" name="entityFullName">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName"
+                      name="entityFullName" (input)="onFormChanged(formData)" required
+                      data-error="Please enter valid Username." minlength="1">
                   </mat-form-field>
                 </div>
               </div>
@@ -26,23 +30,27 @@
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required ngModel (ngModelChange)="productSelected($event)" name="product">
+                    <select matNativeControl required ngModel (ngModelChange)="productSelected($event)" name="product"
+                      (change)="onFormChanged(formData)" required>
                       <option value="" disabled>Products</option>
-                      <option *ngFor="let product of products" class="ng-tns-c28-8" [ngValue]="product">{{product.name}}</option>
+                      <option *ngFor="let product of products" class="ng-tns-c28-8" [ngValue]="product">{{product.name}}
+                      </option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                  <select  matNativeControl required ngModel (ngModelChange)="categorySelected($event)" name="category">
-                    <option value="" disabled>Product Category</option>
-                    <option *ngFor="let category of categories" class="ng-tns-c28-8" [ngValue]="category">{{category.name}}</option>
-                  </select>
+                    <select matNativeControl required ngModel (ngModelChange)="categorySelected($event)" name="category"
+                      (change)="onFormChanged(formData)" required>
+                      <option value="" disabled>Product Category</option>
+                      <option *ngFor="let category of categories" class="ng-tns-c28-8" [ngValue]="category">
+                        {{category.name}}</option>
+                    </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required ngModel name="item">
+                    <select matNativeControl required ngModel name="item" (change)="onFormChanged(formData)" required>
                       <option value="" disabled>Item</option>
                       <option *ngFor="let item of items" class="ng-tns-c28-8" [ngValue]="item">{{item.name}}</option>
                     </select>
@@ -50,30 +58,37 @@
                 </div>
               </div>
               <div class="row">
-                  <div class="col-md-3">
+                <div class="col-md-3">
                   <mat-form-field>
-                    <input matInput placeholder="Start Date" [matDatepicker]="startDate" [(ngModel)]="customer.startDate" name="startDate">
+                    <input matInput placeholder="Start Date" [matDatepicker]="startDate"
+                      [(ngModel)]="customer.startDate" name="startDate">
                     <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
                     <mat-datepicker #startDate></mat-datepicker>
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Quantity" type="text" [(ngModel)]="customer.quantity" name="quantity">
+                    <input matInput placeholder="Quantity" type="text" [(ngModel)]="customer.quantity" name="quantity"
+                      (input)="onFormChanged(formData)" required data-error="Please enter valid quantity value."
+                      minlength="1">
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Unit Price" type="text" [(ngModel)]="customer.unitPrice" name="unitPrice">
+                    <input matInput placeholder="Unit Price" type="text" [(ngModel)]="customer.unitPrice"
+                      name="unitPrice" (input)="onFormChanged(formData)" required
+                      data-error="Please enter valid Unit Price." minlength="1">
                   </mat-form-field>
                 </div>
                 <div class="col-md-3">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Value" type="text" [(ngModel)]="customer.value" name="value">
+                    <input matInput placeholder="Value" type="text" [(ngModel)]="customer.value" name="value"
+                      (input)="onFormChanged(formData)" required data-error="Please enter valid Value." minlength="1">
                   </mat-form-field>
+                </div>
               </div>
-              </div>
-              <button mat-raised-button type="submit" class="btn primary-button pull-right" (click)="onSubmit(formData)">Create
+              <button mat-raised-button type="submit" class="btn primary-button pull-right" [(disabled)]="!formValid"
+                (click)="onSubmit(formData)">Create
                 Record</button>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right">Clear
                 Record</button>

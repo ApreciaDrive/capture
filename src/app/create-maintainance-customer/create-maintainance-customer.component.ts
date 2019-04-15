@@ -1,3 +1,4 @@
+import { isNullOrUndefined, isNull } from 'util';
 import { CategoryModel } from './../models/categories.model';
 import { Component, OnInit } from '@angular/core';
 import { MaintainanceModel } from '../models/maintainance.model';
@@ -30,9 +31,10 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
     startDate: null,
     anniversaryDate: new Date,
   };
-  products: ProductModel [] = [];
-  categories: CategoryModel [] = [];
-  items: ItemModel [] = [];
+  products: ProductModel[] = [];
+  categories: CategoryModel[] = [];
+  items: ItemModel[] = [];
+  formValid: boolean;
 
   constructor(
     private customerService: MaintainanceService,
@@ -68,13 +70,13 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
 
   onSubmit(formData) {
     this.customerService.createMaintainanceCustomer(this.assignCustomer(formData))
-    .then((_) => {
-      this.route.navigate(['/create-maintainance']);
-      this.toastr.successToastr('Created successfully', 'Success!');
-    })
-    .catch(err => {
-      this.toastr.errorToastr(err.message, 'Error!');
-    });
+      .then((_) => {
+        this.route.navigate(['/create-maintainance']);
+        this.toastr.successToastr('Created successfully', 'Success!');
+      })
+      .catch(err => {
+        this.toastr.errorToastr(err.message, 'Error!');
+      });
   }
 
   assignCustomer(formData) {
@@ -94,5 +96,53 @@ export class CreateMaintainanceCustomerComponent implements OnInit {
     return this.customer;
   }
 
-  clearFields() {}
+  onFormChanged(formData) {
+    if (
+      formData.value.entityId === undefined ||
+      formData.value.entityFullName === undefined ||
+      formData.value.quantity === undefined ||
+      formData.value.unitPrice === undefined ||
+      formData.value.value === undefined
+    ) {
+      return;
+    }
+
+    if (formData.value.entityId.length === 19) {
+      if (formData.value.entityFullName.length !== 0) {
+        if (!isNullOrUndefined(formData.value.product)) {
+          if (!isNullOrUndefined(formData.value.category)) {
+            if (!isNullOrUndefined(formData.value.item)) {
+              if (formData.value.quantity.length !== 0) {
+                if (formData.value.unitPrice.length !== 0) {
+                  if (formData.value.value.length) {
+                    this.formValid = true;
+                    return;
+                  } else {
+                    this.formValid = false;
+                  }
+                } else {
+                  this.formValid = false;
+                }
+              } else {
+                this.formValid = false;
+              }
+            } else {
+              this.formValid = false;
+            }
+          } else {
+            this.formValid = false;
+          }
+
+        } else {
+          this.formValid = false;
+        }
+      } else {
+        this.formValid = false;
+      }
+    } else {
+      this.formValid = false;
+    }
+  }
+
+  clearFields() { }
 }

@@ -12,32 +12,31 @@
         </div>
         <form #formData='ngForm' class="form-group">
           <mat-form-field class="user-input">
-            <input matInput placeholder="Username" type="text" ngModel name="Username">
+            <input matInput placeholder="Username" type="text" ngModel name="Username" (input)="onFormChanged(formData)" required data-error="Please enter valid Username." minlength="3">
           </mat-form-field>
           <mat-form-field class="user-input">
-            <input matInput placeholder="Email" type="email" ngModel name="Email">
-          </mat-form-field>
-
-          <mat-form-field class="user-input">
-            <input matInput placeholder="First Name" type="text" ngModel name="FirstName">
+            <input matInput placeholder="Email" type="email" ngModel name="Email" (input)="onFormChanged(formData)" required data-error="Please enter valid email." minlength="5">
           </mat-form-field>
 
           <mat-form-field class="user-input">
-            <input matInput placeholder="Last Name" type="text" ngModel name="LastName">
+            <input matInput placeholder="First Name" type="text" ngModel name="FirstName" (input)="onFormChanged(formData)" required data-error="Please enter valid full name." minlength="1">
           </mat-form-field>
 
           <mat-form-field class="user-input">
-            <input matInput placeholder="Password" type="password" ngModel name="Password">
+            <input matInput placeholder="Last Name" type="text" ngModel name="LastName" (input)="onFormChanged(formData)" required data-error="Please enter valid last name." minlength="1">
           </mat-form-field>
 
           <mat-form-field class="user-input">
-            <input matInput placeholder="Confirm Password" type="password" ngModel name="ConfirmPassword">
+            <input matInput placeholder="Password" type="password" ngModel name="Password" (input)="onFormChanged(formData)" required data-error="Please enter valid full name." minlength="4">
+          </mat-form-field>
+
+          <mat-form-field class="user-input">
+            <input matInput placeholder="Confirm Password" type="password" ngModel name="ConfirmPassword" (input)="onFormChanged(formData)" required data-error="Please enter valid full name." minlength="4">
           </mat-form-field>
 
         </form>
         <div class="offset-md-4">
-          <button mat-button type="submit" class="primary-button" class="btn col-md-6"
-            (click)="onSubmit(formData)">Register</button>
+          <button mat-button type="submit" class="btn col-md-6" (click)="onSubmit(formData)" [(disabled)]="!formValid">Register</button>
         </div><br />
         <footer>
           <p class="row justify-content-center">Already have an account? &nbsp; <a [routerLink]=" ['/login']"

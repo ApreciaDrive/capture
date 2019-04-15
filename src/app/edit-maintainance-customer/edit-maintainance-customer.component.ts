@@ -29,9 +29,10 @@ export class EditMaintainanceCustomerComponent implements OnInit {
     startDate: null,
     anniversaryDate: new Date,
   };
-  products: ProductModel [] = [];
-  categories: CategoryModel [] = [];
-  items: ItemModel [] = [];
+  products: ProductModel[] = [];
+  categories: CategoryModel[] = [];
+  items: ItemModel[] = [];
+  formValid: boolean;
 
   constructor(
     private customerService: MaintainanceService,
@@ -49,12 +50,12 @@ export class EditMaintainanceCustomerComponent implements OnInit {
       const id = params['id'];
       if (!isNullOrUndefined(id)) {
         this.customerService.getCustomerById(id)
-        .then(users => {
-          this.customer = users;
-        }).catch(error => {
-          this.route.navigate(['/clients']);
-          this.toastr.errorToastr(error.statusText, 'Error!');
-        });
+          .then(users => {
+            this.customer = users;
+          }).catch(error => {
+            this.route.navigate(['/clients']);
+            this.toastr.errorToastr(error.statusText, 'Error!');
+          });
       }
     });
   }
@@ -112,6 +113,54 @@ export class EditMaintainanceCustomerComponent implements OnInit {
       }).catch(error => {
         this.toastr.errorToastr(error.statusText, 'Error!');
       });
+  }
+
+  onFormChanged() {
+    if (
+      this.customer.entityId === undefined ||
+      this.customer.entityFullName === undefined ||
+      this.customer.quantity === undefined ||
+      this.customer.unitPrice === undefined ||
+      this.customer.value === undefined
+    ) {
+      return;
+    }
+
+    if (this.customer.entityId.length === 19) {
+      if (this.customer.entityFullName.length !== 0) {
+        if (!isNullOrUndefined(this.customer.product)) {
+          if (!isNullOrUndefined(this.customer.productCategory)) {
+            if (!isNullOrUndefined(this.customer.item)) {
+              if (this.customer.quantity >= 0) {
+                if (this.customer.unitPrice >= 0) {
+                  if (this.customer.value >= 0) {
+                    this.formValid = true;
+                    return;
+                  } else {
+                    this.formValid = false;
+                  }
+                } else {
+                  this.formValid = false;
+                }
+              } else {
+                this.formValid = false;
+              }
+            } else {
+              this.formValid = false;
+            }
+          } else {
+            this.formValid = false;
+          }
+
+        } else {
+          this.formValid = false;
+        }
+      } else {
+        this.formValid = false;
+      }
+    } else {
+      this.formValid = false;
+    }
   }
 
 }

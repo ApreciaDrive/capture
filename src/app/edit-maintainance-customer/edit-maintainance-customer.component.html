@@ -12,12 +12,15 @@
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="EntityId">
+                    <input matInput placeholder="Entity ID" type="text" [(ngModel)]="customer.entityId" name="entityId"
+                      (input)="onFormChanged()" required data-error="Please enter valid entity Id." minlength="19" disabled>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName" name="EntityFullName">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="customer.entityFullName"
+                      name="entityFullName" (input)="onFormChanged()" required data-error="Please enter valid entity full name."
+                      minlength="1">
                   </mat-form-field>
                 </div>
               </div>
@@ -26,25 +29,29 @@
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="customer.product" (ngModelChange)="productSelected($event)" name="customer.product">
-                       <option *ngFor="let product of products" value="{{product.name}}"
-                         [selected]="product.name == customer.product">
-                         {{product.name}}
-                       </option>
+                    <select matNativeControl required [(ngModel)]="customer.product"
+                      (ngModelChange)="productSelected($event)" name="product" (change)="onFormChanged()">
+                      <option *ngFor="let product of products" value="{{product.name}}"
+                        [selected]="product.name == customer.product">
+                        {{product.name}}
+                      </option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="customer.productCategory" (ngModelChange)="categorySelected($event)" name="productCategory">
+                    <select matNativeControl required [(ngModel)]="customer.productCategory"
+                      (ngModelChange)="categorySelected($event)" name="category" (change)="onFormChanged()">
                       <option value="{{customer.productCategory}}">{{customer.productCategory}}</option>
-                      <option *ngFor="let category of categories" class="ng-tns-c28-8" value="{{category.name}}">{{category.name}}</option>
+                      <option *ngFor="let category of categories" class="ng-tns-c28-8" value="{{category.name}}">
+                        {{category.name}}</option>
                     </select>
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="customer.item" name="item">
+                    <select matNativeControl required [(ngModel)]="customer.item" name="item"
+                      (change)="onFormChanged()">
                       <option value="{{customer.item}}">{{customer.item}}</option>
                       <option *ngFor="let item of items" class="ng-tns-c28-8" value="{{item.name}}">{{item.name}}
                       </option>
@@ -55,22 +62,28 @@
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Quantity" type="text" [(ngModel)]="customer.quantity" name="Quantity">
+                    <input matInput placeholder="Quantity" type="text" [(ngModel)]="customer.quantity" name="quantity"
+                      (input)="onFormChanged()" required data-error="Please enter valid quantity value." minlength="1">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Unit Price" type="text" [(ngModel)]="customer.unitPrice" name="UnitPrice">
+                    <input matInput placeholder="Unit Price" type="text" [(ngModel)]="customer.unitPrice"
+                      name="unitPrice" (input)="onFormChanged()" required data-error="Please enter valid Unit Price."
+                      minlength="1">
                   </mat-form-field>
                 </div>
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Value" type="text" [(ngModel)]="customer.value" name="Value">
+                    <input matInput placeholder="Value" type="text" [(ngModel)]="customer.value" name="value"
+                      (input)="onFormChanged()" required data-error="Please enter valid Value." minlength="1">
                   </mat-form-field>
                 </div>
               </div>
-              <button mat-raised-button type="submit" class="btn btn-primary-variant pull-right" (click)="onSubmit()">Update</button>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="deleteCustomer()">Delete</button>
+              <button mat-raised-button type="submit" class="btn btn-primary-variant pull-right"
+                [(disabled)]="!formValid" (click)="onSubmit()">Update</button>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                (click)="deleteCustomer()">Delete</button>
               <div class="clearfix"></div>
             </form>
           </div>
